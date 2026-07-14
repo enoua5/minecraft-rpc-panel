@@ -1,4 +1,7 @@
 
+dev: .ACTION .venv/bin/python
+	.venv/bin/python manage.py runserver
+
 # Venv init
 .venv/bin/python:
 	test -d .venv || python3 -m venv .venv

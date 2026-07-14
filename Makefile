@@ -23,4 +23,11 @@ install: .venv/touchfile
 	.venv/bin/pip install -Ur requirements.txt
 	touch .venv/touchfile
 
+# Tools
+.venv/bin/black: .venv/bin/python
+	.venv/bin/python -m pip install black
+
+format: .ACTION .venv/bin/black
+	.venv/bin/black .
+
 .ACTION:

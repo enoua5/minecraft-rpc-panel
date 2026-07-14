@@ -5,15 +5,16 @@ from pathlib import Path
 from django.db import models
 from django.conf import settings
 
-
 # Create your models here.
 
 
 class ServerConfigurationException(Exception):
     """An exception in the server configuration"""
 
+
 class MissingServerApiKeyException(ServerConfigurationException):
     """The configured server does not have an API key set"""
+
 
 class AvailableServer(models.Model):
     """A server available to manage"""
@@ -21,7 +22,7 @@ class AvailableServer(models.Model):
     class Meta:
         ordering = ["-created_at"]
 
-    name = models.TextField("Server display name")
+    name = models.CharField("Server display name")
     """The displayed name of the server"""
     created_at = models.DateTimeField(auto_now_add=True)
     """The time the server was added to the list"""
@@ -29,9 +30,9 @@ class AvailableServer(models.Model):
     """The time the server config was last modified"""
     path = models.FilePathField(
         "Server file path",
-        path="~/minecraft",
+        path="/home/iota/minecraft",
+        match="server.properties",
         recursive=True,
-        allow_folders=True,
         null=True,
         blank=True,
     )
@@ -40,11 +41,11 @@ class AvailableServer(models.Model):
     
     Will read `server.properties` to determine host/port/key if not set in database
     """
-    hostname = models.TextField("Server URL", null=True, blank=True)
+    hostname = models.CharField("Server domain", null=True, blank=True)
     """The hostname for the server, defaults to `localhost` if not set here or in `server.properties`"""
     port = models.IntegerField("RPC port", null=True, blank=True)
     """The port for the RPC server, defaults to `25585` if not set here or in `server.properties`"""
-    api_key = models.TextField("RPC API key", null=True, blank=True)
+    api_key = models.CharField("RPC API key", null=True, blank=True)
     """The API key to use to connect to the RPC server, defaults to value in `server.properties`"""
 
     @cached_property
@@ -60,7 +61,7 @@ class AvailableServer(models.Model):
         if os.path.exists(self.path) and not os.path.isdir(self.path):
             return Path(self.path)
         return None
-    
+
     @cached_property
     def server_properties(self) -> dict[str, str | None]:
         """Get the server.properties values"""
@@ -87,7 +88,7 @@ class AvailableServer(models.Model):
             return self.hostname
         props_hostname = self.server_properties.get("management-server-host")
         return props_hostname or "losthost"
-    
+
     def getPort(self) -> int:
         """Get the server port"""
         if self.port:

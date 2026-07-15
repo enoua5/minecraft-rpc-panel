@@ -1,5 +1,5 @@
 
-dev: .ACTION .venv/bin/python
+dev: .ACTION .venv/bin/python .venv/touchfile
 	.venv/bin/python manage.py runserver
 
 # Venv init

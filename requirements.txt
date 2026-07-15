@@ -9,6 +9,7 @@ asgiref==3.11.1
     #   channels
     #   daphne
     #   django
+    #   types-channels
 attrs==26.1.0
     # via
     #   service-identity
@@ -38,6 +39,12 @@ django==6.0.7
     # via
     #   -r requirements.in
     #   channels
+    #   django-stubs
+    #   django-stubs-ext
+django-stubs==6.0.7
+    # via types-channels
+django-stubs-ext==6.0.7
+    # via django-stubs
 hyperlink==21.0.0
     # via
     #   autobahn
@@ -64,8 +71,15 @@ twisted[tls]==26.4.0
     # via daphne
 txaio==26.6.1
     # via autobahn
+types-channels==4.3.0.20260518
+    # via -r requirements.in
+types-pyyaml==6.0.12.20260518
+    # via django-stubs
 typing-extensions==4.16.0
-    # via twisted
+    # via
+    #   django-stubs
+    #   django-stubs-ext
+    #   twisted
 ujson==5.13.0
     # via autobahn
 zope-interface==8.5

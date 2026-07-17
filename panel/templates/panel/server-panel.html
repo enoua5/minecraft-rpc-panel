@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'panel/server-panel.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2>{{ server.name }}</h2>
+{% endblock %}

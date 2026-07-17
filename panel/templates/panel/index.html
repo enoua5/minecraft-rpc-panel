@@ -2,13 +2,15 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'admin/index.css' %}">
+<link rel="stylesheet" href="{% static 'panel/index.css' %}">
 {% endblock %}
 
 {% block content %}
 <ul>
     {% for server in servers %}
-    <li>{{ server.name }}</li>
+    <li>
+        <a href="{% url 'server_panel' server.id %}">{{ server.name }}</a>
+    </li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'user/style.css' %}">
+        {% block head %}{% endblock %}
+        <title>{% block title %}User{% endblock %} — Minecraft admin panel</title>
+    </head>
+    <body>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>

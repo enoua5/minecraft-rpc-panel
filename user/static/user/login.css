@@ -1,0 +1,17 @@
+
+form {
+    width: 40ch;
+    align-self: center;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

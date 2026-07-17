@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "panel.apps.PanelConfig",
+    "user",
     "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -70,6 +71,12 @@ TEMPLATES = [
 
 ASGI_APPLICATION = "minecraft_admin_portal.asgi.application"
 
+
+# Authentication
+
+LOGIN_REDIRECT_URL = "/panel/"
+LOGIN_URL = "/user/login/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
@@ -116,4 +123,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"

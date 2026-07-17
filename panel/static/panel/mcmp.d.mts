@@ -1,4 +1,12 @@
 
+export interface JsonRpcMessage {
+    jsonrpc: "2.0";
+    method?: string;
+    id?: number;
+    params?: unknown[];
+    result?: unknown;
+}
+
 export namespace MCMP {
     export type DiscoverPropertyValue = {
         $ref: string;

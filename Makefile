@@ -32,7 +32,7 @@ format: .ACTION .venv/bin/black
 	npx prettier --write **/*.ts
 
 # javascript
-js: panel/static/panel/js/server-panel.js
+js: panel/static/panel/js/*.js
 %.js: %.ts
 	tsc $<
 

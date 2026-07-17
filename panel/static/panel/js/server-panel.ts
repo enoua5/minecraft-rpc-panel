@@ -8,6 +8,10 @@ import { RpcRequestHandler } from "./rpc-request-handler.js";
         client.makeRpcRequest("minecraft:players").then((response) => {
             console.log("got response", response);
         });
+        client.addEventListener(
+            "minecraft:notification/players/joined",
+            console.log
+        );
     }
 
     function handleSocketClose() {

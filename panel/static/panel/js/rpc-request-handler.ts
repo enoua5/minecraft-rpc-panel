@@ -1,10 +1,55 @@
-import type { JsonRpcMessage, JsonRpcNotification } from "./rpc.d.mts";
+import type {
+    JsonRpcMessage,
+    JsonRpcErrorObject,
+} from "./rpc.d.mts";
 import { IdCounter } from "./id-counter.js";
 
-export class RpcRequestHandler {
-    private requests: { [id: number]: (result: any) => void } = {};
+export class RpcError extends Error {
+    original: JsonRpcErrorObject;
+    code: number;
+    data: unknown;
+
+    constructor(err: JsonRpcErrorObject) {
+        super(err.message);
+        this.original = err;
+        this.code = err.code;
+        this.data = err.data;
+    }
+}
+
+export type RpcCallback<Params extends unknown[] | undefined> = (
+    ...params: NonNullable<Params>
+) => void;
+
+export class RpcRequestHandler<
+    RequestMethodName extends string = string,
+    RequestMapping extends {
+        [name in RequestMethodName]: {
+            request_params: unknown;
+            response: unknown;
+        };
+    } = {
+        [name in RequestMethodName]: {
+            request_params: unknown;
+            response: unknown;
+        };
+    },
+    NotificationMethodName extends string = string,
+    NotificationMapping extends {
+        [name in NotificationMethodName]: {
+            params: unknown[] | undefined;
+        };
+    } = {
+        [name in NotificationMethodName]: {
+            params: unknown[] | undefined;
+        };
+    },
+> {
+    private requests: {
+        [id: number]: [(result: any) => void, (error: any) => void];
+    } = {};
     private listeners: {
-        [method: string]: ((params: JsonRpcNotification["params"]) => void)[];
+        [method: string]: RpcCallback<any>[];
     } = {};
     private id_counter: IdCounter = new IdCounter();
     private socket: WebSocket;
@@ -25,8 +70,18 @@ export class RpcRequestHandler {
     private handleSocketMessage(e: WebSocketEventMap["message"]) {
         const data: JsonRpcMessage = JSON.parse(e.data);
 
-        if (data.id) {
-            const resolve = this.requests[data.id];
+        if (data.error) {
+            if (typeof data.id === "number") {
+                const [_, reject] = this.requests[data.id];
+                if (reject) {
+                    reject(new RpcError(data.error));
+                }
+                delete this.requests[data.id];
+            } else {
+                console.error(data.error);
+            }
+        } else if (data.id != null) {
+            const [resolve] = this.requests[data.id];
             if (resolve) {
                 resolve(data.result);
             }
@@ -35,7 +90,7 @@ export class RpcRequestHandler {
             const listeners = this.listeners[data.method] ?? [];
             for (const listener of listeners) {
                 try {
-                    listener(data.params);
+                    listener(...(data.params ?? []));
                 } catch (err) {
                     console.error(err);
                     continue;
@@ -47,11 +102,14 @@ export class RpcRequestHandler {
     /**
      * Make a request to the Minecraft RPC
      */
-    public async makeRpcRequest(method: string, params?: object) {
+    public async makeRpcRequest<Method extends RequestMethodName>(
+        method: Method,
+        params?: RequestMapping[Method]["request_params"]
+    ): Promise<RequestMapping[Method]["response"]> {
         const id = this.id_counter.id;
 
-        const promise = new Promise<any>((resolve) => {
-            this.requests[id] = resolve;
+        const promise = new Promise<any>((resolve, reject) => {
+            this.requests[id] = [resolve, reject];
         });
 
         this.socket.send(
@@ -66,9 +124,9 @@ export class RpcRequestHandler {
         return promise;
     }
 
-    public addEventListener(
-        method: string,
-        callback: (...params: JsonRpcNotification["params"]) => void
+    public addEventListener<Method extends NotificationMethodName>(
+        method: Method,
+        callback: RpcCallback<NotificationMapping[Method]["params"]>
     ) {
         if (!this.listeners[method]) {
             this.listeners[method] = [];
@@ -76,9 +134,9 @@ export class RpcRequestHandler {
         this.listeners[method].push(callback);
     }
 
-    public removeEventListener(
-        method: string,
-        callback: (...params: JsonRpcNotification["params"]) => void
+    public removeEventListener<Method extends NotificationMethodName>(
+        method: Method,
+        callback: RpcCallback<NotificationMapping[Method]["params"]>
     ) {
         this.listeners[method] = (this.listeners[method] ?? []).filter(
             (c) => c !== callback

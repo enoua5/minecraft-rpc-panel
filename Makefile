@@ -29,7 +29,7 @@ install: .venv/touchfile
 
 format: .ACTION .venv/bin/black
 	.venv/bin/black .
-	npx prettier --write **/*.ts
+	npx prettier --write **/*.ts **/*.mts
 
 # javascript
 js: panel-js

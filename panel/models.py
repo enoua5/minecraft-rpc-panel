@@ -48,6 +48,9 @@ class AvailableServer(models.Model):
     api_key = models.CharField("RPC API key", null=True, blank=True)
     """The API key to use to connect to the RPC server, defaults to value in `server.properties`"""
 
+    def __str__(self):
+        return self.name
+
     @cached_property
     def server_properties_path(self) -> Path | None:
         """Get the path to `server.properties`"""

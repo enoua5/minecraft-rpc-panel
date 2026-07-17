@@ -7,7 +7,9 @@
 
 {% block content %}
 
-{% comment %} <link rel="stylesheet" href="{% static 'user/login.css' %}"> {% endcomment %}
+
+<form class="login-form" method="post" action="{% url 'login' %}">
+{% csrf_token %}
 
 {% if form.errors %}
 <p class="error">Your username and password didn't match. Please try again.</p>
@@ -22,8 +24,6 @@
     {% endif %}
 {% endif %}
 
-<form class="login-form" method="post" action="{% url 'login' %}">
-{% csrf_token %}
 <fieldset class="login-fieldset">
 <legend class="login-fieldset">Login</legend>
 <div class="form-group">

@@ -15,7 +15,7 @@ export namespace MCSMP {
     } | {
         type: "object";
         properties: {
-            [field_name: string]: DiscoverPropertyValue;
+            [fieldName: string]: DiscoverPropertyValue;
         };
     }
 
@@ -36,7 +36,7 @@ export namespace MCSMP {
     export type DiscoverResponse = {
         components: {
             schemas: {
-                [schema_name: string]: DiscoverPropertyValue
+                [schemaName: string]: DiscoverPropertyValue
             }
         };
         info: {

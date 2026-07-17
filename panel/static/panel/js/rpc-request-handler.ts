@@ -1,7 +1,4 @@
-import type {
-    JsonRpcMessage,
-    JsonRpcErrorObject,
-} from "./rpc.d.mts";
+import type { JsonRpcMessage, JsonRpcErrorObject } from "./rpc.d.mts";
 import { IdCounter } from "./id-counter.js";
 
 export class RpcError extends Error {

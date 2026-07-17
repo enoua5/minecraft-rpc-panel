@@ -1,11 +1,16 @@
-import type { MCSMP } from "./mcmp.d.mts";
+import type {
+    MinecraftMethodName,
+    MinecraftNotificationMethodName,
+    MinecraftNotifications,
+    MinecraftRequests,
+} from "./mcmp.d.mts";
 import { RpcCallback, RpcRequestHandler } from "./rpc-request-handler.js";
 
 export class MinecraftServerManagementClient extends RpcRequestHandler<
-    MCSMP.MinecraftMethodName,
-    MCSMP.MinecraftRequests,
-    MCSMP.MinecraftNotificationMethodName,
-    MCSMP.MinecraftNotifications
+    MinecraftMethodName,
+    MinecraftRequests,
+    MinecraftNotificationMethodName,
+    MinecraftNotifications
 > {
     async discover() {
         return await this.makeRpcRequest("rpc.discover");
@@ -15,12 +20,16 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
         return await this.makeRpcRequest("minecraft:allowlist");
     }
 
-    async setAllowList(params: MCSMP.AllowlistSetParams) {
+    async setAllowList(
+        params: MinecraftRequests["minecraft:allowlist"]["request_params"]
+    ) {
         return await this.makeRpcRequest("minecraft:allowlist/set", params);
     }
 
     addPlayerJoinedListener(
-        callback: RpcCallback<[MCSMP.PlayerNotificationParams]>
+        callback: RpcCallback<
+            MinecraftNotifications["minecraft:notification/players/joined"]["params"]
+        >
     ) {
         this.addEventListener(
             "minecraft:notification/players/joined",
@@ -29,7 +38,9 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     removePlayerJoinedListener(
-        callback: RpcCallback<[MCSMP.PlayerNotificationParams]>
+        callback: RpcCallback<
+            MinecraftNotifications["minecraft:notification/players/joined"]["params"]
+        >
     ) {
         this.removeEventListener(
             "minecraft:notification/players/joined",

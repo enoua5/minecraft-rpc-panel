@@ -1,4 +1,3 @@
-
 export class IdCounter {
     #next_id = 1;
 

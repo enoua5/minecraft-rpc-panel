@@ -15,8 +15,8 @@ export class RpcRequestHandler {
         const data = JSON.parse(e.data);
         const id = data.id;
         const resolve = this.requests[id];
-        if(resolve) {
-            resolve(data.result)
+        if (resolve) {
+            resolve(data.result);
         }
         delete this.requests[id];
     }
@@ -24,25 +24,26 @@ export class RpcRequestHandler {
     /**
      * Make a request to the Minecraft RPC
      */
-    async makeRpcRequest(
-        method: string,
-        params?: object,
-    ) {
+    async makeRpcRequest(method: string, params?: object) {
         const id = this.id_counter.id;
 
-        const promise = new Promise<any>(resolve => { this.requests[id] = resolve });
+        const promise = new Promise<any>((resolve) => {
+            this.requests[id] = resolve;
+        });
 
-        this.socket.send(JSON.stringify({
-            jsonrpc: "2.0",
-            id,
-            method,
-            params,
-        }));
+        this.socket.send(
+            JSON.stringify({
+                jsonrpc: "2.0",
+                id,
+                method,
+                params,
+            })
+        );
 
         return promise;
     }
 
     async discover(): Promise<MCMP.DiscoverResponse> {
-        return await this.makeRpcRequest("rpc.discover")
+        return await this.makeRpcRequest("rpc.discover");
     }
 }

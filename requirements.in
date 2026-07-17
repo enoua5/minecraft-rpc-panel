@@ -1,3 +1,4 @@
 channels[daphne]
 django
 types-channels
+websockets

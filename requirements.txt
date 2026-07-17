@@ -82,5 +82,7 @@ typing-extensions==4.16.0
     #   twisted
 ujson==5.13.0
     # via autobahn
+websockets==16.1
+    # via -r requirements.in
 zope-interface==8.5
     # via twisted

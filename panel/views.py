@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from panel.models import AvailableServer
+from .models import AvailableServer
 
 # Create your views here.
 

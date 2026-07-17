@@ -1,5 +1,5 @@
 
-dev: .ACTION .venv/bin/python .venv/touchfile
+dev: .ACTION .venv/bin/python .venv/touchfile js
 	.venv/bin/python manage.py runserver
 
 # Venv init
@@ -29,5 +29,10 @@ install: .venv/touchfile
 
 format: .ACTION .venv/bin/black
 	.venv/bin/black .
+
+# javascript
+js: panel/static/panel/js/server-panel.js
+%.js: %.ts
+	tsc $<
 
 .ACTION:

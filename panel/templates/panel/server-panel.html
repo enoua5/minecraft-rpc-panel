@@ -5,8 +5,10 @@
 <link rel="stylesheet" href="{% static 'panel/server-panel.css' %}">
 {{ server.id|json_script:"server-id" }}
 <script type="module" src="{% static 'panel/js/server-panel.js' %}"></script>
+<script type="module" src="{% static 'panel/js/custom-elements/index.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <h2>{{ server.name }}</h2>
+<mcsmp-test />
 {% endblock %}

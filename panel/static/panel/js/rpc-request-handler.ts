@@ -1,40 +1,53 @@
-import type { MCMP, JsonRpcMessage } from "../mcmp.d.mts";
+import type { JsonRpcMessage, JsonRpcNotification } from "./rpc.d.mts";
 import { IdCounter } from "./id-counter.js";
 
 export class RpcRequestHandler {
-    requests: { [id: number]: (result: any) => void } = {};
-    listeners: {
-        [method: string]: ((params: JsonRpcMessage["params"]) => void)[];
+    private requests: { [id: number]: (result: any) => void } = {};
+    private listeners: {
+        [method: string]: ((params: JsonRpcNotification["params"]) => void)[];
     } = {};
-    id_counter: IdCounter = new IdCounter();
-    socket: WebSocket;
+    private id_counter: IdCounter = new IdCounter();
+    private socket: WebSocket;
 
-    constructor(socket: WebSocket) {
-        this.socket = socket;
-        this.socket.onmessage = this.#handleSocketMessage.bind(this);
+    constructor(
+        url: string,
+        options?: {
+            onOpen?: null | ((event: WebSocketEventMap["open"]) => void);
+            onClose?: null | ((event: WebSocketEventMap["close"]) => void);
+        }
+    ) {
+        this.socket = new WebSocket(url);
+        this.socket.onmessage = this.handleSocketMessage.bind(this);
+        this.socket.onopen = options?.onOpen ?? null;
+        this.socket.onclose = options?.onClose ?? null;
     }
 
-    #handleSocketMessage(e: WebSocketEventMap["message"]) {
+    private handleSocketMessage(e: WebSocketEventMap["message"]) {
         const data: JsonRpcMessage = JSON.parse(e.data);
 
-        if (data.method?.match(/^\w+:notification/)) {
-            const listeners = this.listeners[data.method] ?? [];
-            for (const listener of listeners) {
-                listener(data.params);
-            }
-        } else if (data.id) {
+        if (data.id) {
             const resolve = this.requests[data.id];
             if (resolve) {
                 resolve(data.result);
             }
             delete this.requests[data.id];
+        } else if (data.method) {
+            const listeners = this.listeners[data.method] ?? [];
+            for (const listener of listeners) {
+                try {
+                    listener(data.params);
+                } catch (err) {
+                    console.error(err);
+                    continue;
+                }
+            }
         }
     }
 
     /**
      * Make a request to the Minecraft RPC
      */
-    async makeRpcRequest(method: string, params?: object) {
+    public async makeRpcRequest(method: string, params?: object) {
         const id = this.id_counter.id;
 
         const promise = new Promise<any>((resolve) => {
@@ -53,9 +66,9 @@ export class RpcRequestHandler {
         return promise;
     }
 
-    addEventListener(
+    public addEventListener(
         method: string,
-        callback: (params: JsonRpcMessage["params"]) => void
+        callback: (...params: JsonRpcNotification["params"]) => void
     ) {
         if (!this.listeners[method]) {
             this.listeners[method] = [];
@@ -63,16 +76,12 @@ export class RpcRequestHandler {
         this.listeners[method].push(callback);
     }
 
-    removeEventListener(
+    public removeEventListener(
         method: string,
-        callback: (params: JsonRpcMessage["params"]) => void
+        callback: (...params: JsonRpcNotification["params"]) => void
     ) {
         this.listeners[method] = (this.listeners[method] ?? []).filter(
             (c) => c !== callback
         );
-    }
-
-    async discover(): Promise<MCMP.DiscoverResponse> {
-        return await this.makeRpcRequest("rpc.discover");
     }
 }

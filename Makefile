@@ -34,7 +34,6 @@ format: .ACTION .venv/bin/black
 # javascript
 js: panel-js
 panel-js:\
-	panel/static/panel/js/server-panel.js\
 	panel/static/panel/js/custom-elements/index.js\
 	panel/static/panel/js/*.js\
 	panel/static/panel/js/custom-elements/*.js

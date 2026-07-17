@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "minecraft_admin_portal",
     "panel.apps.PanelConfig",
     "user",
     "daphne",

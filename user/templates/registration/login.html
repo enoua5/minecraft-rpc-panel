@@ -22,10 +22,10 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
+<form class="login-form" method="post" action="{% url 'login' %}">
 {% csrf_token %}
-<fieldset>
-<legend>Login</legend>
+<fieldset class="login-fieldset">
+<legend class="login-fieldset">Login</legend>
 <div class="form-group">
     {{ form.username.label_tag }}
     {{ form.username }}

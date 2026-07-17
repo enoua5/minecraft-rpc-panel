@@ -5,5 +5,5 @@ from django.shortcuts import render
 # Create your views here.
 
 @login_required
-def index(request):
-    return HttpResponse("Hello, world!")
+def index(request) -> HttpResponse:
+    return render(request, "panel/index.html")

@@ -1,17 +1,21 @@
 
-.login-form {
-    width: 40ch;
-    align-self: center;
+h1 {
+    margin: 0;
+    font-size: 1.5em;
 }
 
-.login-fieldset {
+main {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    align-items: center;
 }
 
-.form-group {
+nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.error {
+    color: red;
 }

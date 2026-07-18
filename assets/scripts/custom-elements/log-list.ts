@@ -19,7 +19,7 @@ class ServerLogsElement extends LitElement {
             display: flex;
             flex-direction: column-reverse;
             gap: 0.25em;
-            font-family: var(--event-font)
+            font-family: var(--event-font);
         }
         .console-controls form {
             display: flex;
@@ -28,6 +28,34 @@ class ServerLogsElement extends LitElement {
         }
         .console-controls form input[type="text"] {
             flex: 1;
+        }
+        .console-event-info {
+            color: var(--color-unimportant, grey)
+        }
+        .console-event-info::before {
+            content: "[";
+        }
+        .console-event-info::after {
+            content: "]";
+        }
+
+        .console-event-level-trace {
+            color: var(--color-unimportant, grey);
+        }
+        .console-event-level-debug {
+            color: var(--color-debug, blue);
+        }
+        .console-event-level-info {
+            color: var(--color-text, inherit);
+        }
+        .console-event-level-warn {
+            color: var(--color-warn, yellow);
+        }
+        .console-event-level-error {
+            color: var(--color-error, red);
+        }
+        .console-event-level-fatal {
+            color: var(--color-error, red);
         }
     `;
 
@@ -52,9 +80,12 @@ class ServerLogsElement extends LitElement {
 
     renderEvent(event: ConsoleLogEvent) {
         return html`<div
-            class="console-event console-event-level-${event.level}"
+            class="console-event console-event-level-${event.level.toLowerCase()}"
         >
-            <span class="console-timestamp">${event.timestamp}</span>
+            <span class="console-event-info"
+                ><span class="console-timestamp">${event.timestamp}</span>
+                <span class="console-level">${event.level}</span></span
+            >
             <span class="console-message">${event.message}</span>
         </div>`;
     }

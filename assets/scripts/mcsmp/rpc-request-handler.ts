@@ -33,13 +33,9 @@ export class RpcRequestHandler<
     },
     NotificationMethodName extends string = string,
     NotificationMapping extends {
-        [name in NotificationMethodName]: {
-            params: unknown[] | undefined;
-        };
+        [name in NotificationMethodName]: unknown[];
     } = {
-        [name in NotificationMethodName]: {
-            params: unknown[] | undefined;
-        };
+        [name in NotificationMethodName]: unknown[];
     },
 > {
     private requests: {
@@ -123,7 +119,7 @@ export class RpcRequestHandler<
 
     public addEventListener<Method extends NotificationMethodName>(
         method: Method,
-        callback: RpcCallback<NotificationMapping[Method]["params"]>
+        callback: RpcCallback<NotificationMapping[Method]>
     ) {
         if (!this.listeners[method]) {
             this.listeners[method] = [];
@@ -133,7 +129,7 @@ export class RpcRequestHandler<
 
     public removeEventListener<Method extends NotificationMethodName>(
         method: Method,
-        callback: RpcCallback<NotificationMapping[Method]["params"]>
+        callback: RpcCallback<NotificationMapping[Method]>
     ) {
         this.listeners[method] = (this.listeners[method] ?? []).filter(
             (c) => c !== callback

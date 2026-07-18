@@ -56,20 +56,25 @@ export type DiscoverResponse = {
     methods: DiscoverMethod[];
 };
 
-export interface Player {
-    name?: string;
-    id?: string;
-}
+export type Player =
+    | {
+          name?: string;
+          id: string;
+      }
+    | {
+          name: string;
+          id?: string;
+      };
 
 export interface Version {
-    protocol?: number;
-    name?: string;
+    protocol: number;
+    name: string;
 }
 
 export interface ServerState {
-    players?: Player[];
-    started?: boolean;
-    version?: Version;
+    players: Player[];
+    started: boolean;
+    version: Version;
 }
 
 export type GameType = "survival" | "creative" | "adventure" | "spectator";
@@ -84,32 +89,32 @@ export interface Message {
 
 export interface SystemMessage {
     receivingPlayers?: Player[];
-    overlay?: boolean;
-    message?: Message;
+    overlay: boolean;
+    message: Message;
 }
 
 export interface KickPlayer {
     message?: Message;
-    player?: Player;
+    player: Player;
 }
 
 export interface Operator {
     permissionLevel?: number;
     bypassesPlayerLimit?: boolean;
-    player?: Player;
+    player: Player;
 }
 
 export interface UserBan {
     reason?: string;
     expires?: string;
     source?: string;
-    player?: Player;
+    player: Player;
 }
 
 export interface IpBan {
     reason?: string;
     expires?: string;
-    ip?: string;
+    ip: string;
     source?: string;
 }
 
@@ -124,14 +129,14 @@ export interface IncomingIpBan {
 export type GameRuleValue = boolean | number;
 
 export interface UntypedGameRule {
-    value?: GameRuleValue;
-    key?: string;
+    value: GameRuleValue;
+    key: string;
 }
 
 export interface TypedGameRule {
-    type?: "integer" | "boolean";
-    value?: GameRuleValue;
-    key?: string;
+    type: "integer" | "boolean";
+    value: GameRuleValue;
+    key: string;
 }
 
 // --- minecraft:allowlist ---
@@ -366,93 +371,31 @@ export interface GamerulesUpdateParams {
 }
 export type GamerulesUpdateResult = TypedGameRule;
 
-export interface PlayerNotificationParams {
-    player: Player;
-}
-
-export interface OperatorNotificationParams {
-    player: Operator;
-}
-
-export interface IpBanNotificationParams {
-    player: IpBan;
-}
-
-export interface IpBanRemovedNotificationParams {
-    player: string;
-}
-
-export interface UserBanNotificationParams {
-    player: UserBan;
-}
-
-export interface GameRuleNotificationParams {
-    gamerule: TypedGameRule;
-}
-
-export interface ServerStatusNotificationParams {
-    status: ServerState;
-}
-
 export interface MinecraftNotifications {
-    "minecraft:notification/server/started": {
-        params: undefined;
-    };
-    "minecraft:notification/server/stopping": {
-        params: undefined;
-    };
-    "minecraft:notification/server/saving": {
-        params: undefined;
-    };
-    "minecraft:notification/server/saved": {
-        params: undefined;
-    };
-    "minecraft:notification/server/activity": {
-        params: undefined;
-    };
-    "minecraft:notification/players/joined": {
-        params: [PlayerNotificationParams];
-    };
-    "minecraft:notification/players/left": {
-        params: [PlayerNotificationParams];
-    };
-    "minecraft:notification/operators/added": {
-        params: [OperatorNotificationParams];
-    };
-    "minecraft:notification/operators/removed": {
-        params: [OperatorNotificationParams];
-    };
-    "minecraft:notification/allowlist/added": {
-        params: [PlayerNotificationParams];
-    };
-    "minecraft:notification/allowlist/removed": {
-        params: [PlayerNotificationParams];
-    };
-    "minecraft:notification/ip_bans/added": {
-        params: [IpBanNotificationParams];
-    };
-    "minecraft:notification/ip_bans/removed": {
-        params: [IpBanRemovedNotificationParams];
-    };
-    "minecraft:notification/bans/added": {
-        params: [UserBanNotificationParams];
-    };
-    "minecraft:notification/bans/removed": {
-        params: [PlayerNotificationParams];
-    };
-    "minecraft:notification/gamerules/updated": {
-        params: [GameRuleNotificationParams];
-    };
-    "minecraft:notification/server/status": {
-        params: [ServerStatusNotificationParams];
-    };
+    "minecraft:notification/server/started": [];
+    "minecraft:notification/server/stopping": [];
+    "minecraft:notification/server/saving": [];
+    "minecraft:notification/server/saved": [];
+    "minecraft:notification/server/activity": [];
+    "minecraft:notification/players/joined": [Player];
+    "minecraft:notification/players/left": [Player];
+    "minecraft:notification/operators/added": [Operator];
+    "minecraft:notification/operators/removed": [Operator];
+    "minecraft:notification/allowlist/added": [Player];
+    "minecraft:notification/allowlist/removed": [Player];
+    "minecraft:notification/ip_bans/added": [IpBan];
+    "minecraft:notification/ip_bans/removed": [string];
+    "minecraft:notification/bans/added": [UserBan];
+    "minecraft:notification/bans/removed": [Player];
+    "minecraft:notification/gamerules/updated": [TypedGameRule];
+    "minecraft:notification/server/status": [ServerState];
 }
 
 export type MinecraftNotificationMethodName = keyof MinecraftNotifications;
 
 export type MinecraftRpcNotification<
     M extends MinecraftNotificationMethodName,
-> = JsonRpcNotification<M, MinecraftNotifications[M]["params"]>;
+> = JsonRpcNotification<M, MinecraftNotifications[M]>;
 
 export interface MinecraftRequests {
     "rpc.discover": {

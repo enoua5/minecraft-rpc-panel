@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cache_fix %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'panel/server-panel.css' %}">
+<link rel="stylesheet" href="{% no_cache_static 'panel/server-panel.css' %}">
 {{ server.id|json_script:"server-id" }}
 <script type="module" src="{% static 'panel/index.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<h2>{{ server.name }}</h2>
-<mcsmp-logs />
+<div class="dashboard">
+    <h2>{{ server.name }}</h2>
+    <div>a</div>
+    <div>b</div>
+    <mcsmp-logs />
+</div>
 {% endblock %}

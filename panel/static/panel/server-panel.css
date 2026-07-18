@@ -1,0 +1,7 @@
+.dashboard {
+    --dashboard-header-height: 5em;
+    --page-header-padding: 5em;
+    display: grid;
+    grid-template-rows: var(--dashboard-header-height) calc(100vh - var(--dashboard-header-height) - var(--page-header-padding));
+    grid-template-columns: 20ch 1fr;
+}

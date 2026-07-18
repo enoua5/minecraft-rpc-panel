@@ -11,7 +11,7 @@ class ServerLogsElement extends LitElement {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
-            height: calc(100vh - 10em);
+            height: 100%;
         }
         .console-event-list {
             flex: 1;
@@ -19,6 +19,7 @@ class ServerLogsElement extends LitElement {
             display: flex;
             flex-direction: column-reverse;
             gap: 0.25em;
+            font-family: var(--event-font)
         }
         .console-controls form {
             display: flex;

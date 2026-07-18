@@ -3,5 +3,20 @@
     --page-header-padding: 5em;
     display: grid;
     grid-template-rows: var(--dashboard-header-height) calc(100vh - var(--dashboard-header-height) - var(--page-header-padding));
-    grid-template-columns: 20ch 1fr;
+    grid-template-columns: 30ch 1fr;
+}
+
+.dashboard div {
+    border: 1px solid black;
+    padding: 1em;
+}
+
+.dashboard-name {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+mcsmp-logs {
+    --event-font: monospace;
 }

@@ -18,3 +18,5 @@ async function getConnectedClient(): Promise<MinecraftServerManagementClient> {
 }
 
 export const client = await getConnectedClient();
+// @ts-ignore here for testing
+window.mcsmp_client = client;

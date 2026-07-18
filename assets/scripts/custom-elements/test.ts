@@ -1,7 +1,7 @@
-import { LitElement, css, html } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { LitElement, css, html } from "lit";
+import { customElement, state } from "lit/decorators.js";
 import { client } from "../mcsmp/mcmp-client";
-import { DiscoverResponse } from '../mcsmp/mcmp.mjs';
+import { DiscoverResponse } from "../mcsmp/mcmp.mjs";
 
 /**
  * Test element that shows the discover
@@ -9,17 +9,17 @@ import { DiscoverResponse } from '../mcsmp/mcmp.mjs';
 @customElement("mcsmp-test")
 class TestElement extends LitElement {
     static styles = css`
-    :host {
-        height: 200px;
-        overflow-y: auto;
-    }
+        :host {
+            height: 200px;
+            overflow-y: auto;
+        }
     `;
 
     @state()
     private discover: DiscoverResponse | null = null;
 
     render() {
-        if(!this.discover) {
+        if (!this.discover) {
             return html`<p>loading...</p>`;
         }
         return html`<pre>${JSON.stringify(this.discover, null, 4)}</pre>`;
@@ -27,9 +27,7 @@ class TestElement extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
-        client.discover().then(
-            (response) => this.discover = response
-        );
+        client.discover().then((response) => (this.discover = response));
     }
 }
 

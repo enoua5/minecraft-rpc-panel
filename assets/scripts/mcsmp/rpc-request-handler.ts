@@ -22,12 +22,12 @@ export class RpcRequestHandler<
     RequestMethodName extends string = string,
     RequestMapping extends {
         [name in RequestMethodName]: {
-            request_params: unknown;
+            request_params: unknown[];
             response: unknown;
         };
     } = {
         [name in RequestMethodName]: {
-            request_params: unknown;
+            request_params: unknown[];
             response: unknown;
         };
     },
@@ -97,7 +97,7 @@ export class RpcRequestHandler<
      */
     public async makeRpcRequest<Method extends RequestMethodName>(
         method: Method,
-        params?: RequestMapping[Method]["request_params"]
+        ...params: RequestMapping[Method]["request_params"]
     ): Promise<RequestMapping[Method]["response"]> {
         const id = this.id_counter.id;
 

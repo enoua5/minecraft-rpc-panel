@@ -29,21 +29,24 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setAllowList(
-        params: MinecraftRequests["minecraft:allowlist/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:allowlist/set"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:allowlist/set"]["response"]> {
-        return await this.makeRpcRequest("minecraft:allowlist/set", params);
+        return await this.makeRpcRequest("minecraft:allowlist/set", ...params);
     }
 
     async addAllowListEntries(
-        params: MinecraftRequests["minecraft:allowlist/add"]["request_params"]
+        ...params: MinecraftRequests["minecraft:allowlist/add"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:allowlist/add"]["response"]> {
-        return await this.makeRpcRequest("minecraft:allowlist/add", params);
+        return await this.makeRpcRequest("minecraft:allowlist/add", ...params);
     }
 
     async removeAllowListEntries(
-        params: MinecraftRequests["minecraft:allowlist/remove"]["request_params"]
+        ...params: MinecraftRequests["minecraft:allowlist/remove"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:allowlist/remove"]["response"]> {
-        return await this.makeRpcRequest("minecraft:allowlist/remove", params);
+        return await this.makeRpcRequest(
+            "minecraft:allowlist/remove",
+            ...params
+        );
     }
 
     async clearAllowList(): Promise<
@@ -60,21 +63,21 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setBans(
-        params: MinecraftRequests["minecraft:bans/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:bans/set"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:bans/set"]["response"]> {
-        return await this.makeRpcRequest("minecraft:bans/set", params);
+        return await this.makeRpcRequest("minecraft:bans/set", ...params);
     }
 
     async addBans(
-        params: MinecraftRequests["minecraft:bans/add"]["request_params"]
+        ...params: MinecraftRequests["minecraft:bans/add"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:bans/add"]["response"]> {
-        return await this.makeRpcRequest("minecraft:bans/add", params);
+        return await this.makeRpcRequest("minecraft:bans/add", ...params);
     }
 
     async removeBans(
-        params: MinecraftRequests["minecraft:bans/remove"]["request_params"]
+        ...params: MinecraftRequests["minecraft:bans/remove"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:bans/remove"]["response"]> {
-        return await this.makeRpcRequest("minecraft:bans/remove", params);
+        return await this.makeRpcRequest("minecraft:bans/remove", ...params);
     }
 
     async clearBans(): Promise<
@@ -93,21 +96,21 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setIpBans(
-        params: MinecraftRequests["minecraft:ip_bans/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:ip_bans/set"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:ip_bans/set"]["response"]> {
-        return await this.makeRpcRequest("minecraft:ip_bans/set", params);
+        return await this.makeRpcRequest("minecraft:ip_bans/set", ...params);
     }
 
     async addIpBans(
-        params: MinecraftRequests["minecraft:ip_bans/add"]["request_params"]
+        ...params: MinecraftRequests["minecraft:ip_bans/add"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:ip_bans/add"]["response"]> {
-        return await this.makeRpcRequest("minecraft:ip_bans/add", params);
+        return await this.makeRpcRequest("minecraft:ip_bans/add", ...params);
     }
 
     async removeIpBans(
-        params: MinecraftRequests["minecraft:ip_bans/remove"]["request_params"]
+        ...params: MinecraftRequests["minecraft:ip_bans/remove"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:ip_bans/remove"]["response"]> {
-        return await this.makeRpcRequest("minecraft:ip_bans/remove", params);
+        return await this.makeRpcRequest("minecraft:ip_bans/remove", ...params);
     }
 
     async clearIpBans(): Promise<
@@ -126,9 +129,9 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async kickPlayers(
-        params: MinecraftRequests["minecraft:players/kick"]["request_params"]
+        ...params: MinecraftRequests["minecraft:players/kick"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:players/kick"]["response"]> {
-        return await this.makeRpcRequest("minecraft:players/kick", params);
+        return await this.makeRpcRequest("minecraft:players/kick", ...params);
     }
 
     // ---------------------------------------------------------------------
@@ -141,21 +144,24 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setOperators(
-        params: MinecraftRequests["minecraft:operators/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:operators/set"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:operators/set"]["response"]> {
-        return await this.makeRpcRequest("minecraft:operators/set", params);
+        return await this.makeRpcRequest("minecraft:operators/set", ...params);
     }
 
     async addOperators(
-        params: MinecraftRequests["minecraft:operators/add"]["request_params"]
+        ...params: MinecraftRequests["minecraft:operators/add"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:operators/add"]["response"]> {
-        return await this.makeRpcRequest("minecraft:operators/add", params);
+        return await this.makeRpcRequest("minecraft:operators/add", ...params);
     }
 
     async removeOperators(
-        params: MinecraftRequests["minecraft:operators/remove"]["request_params"]
+        ...params: MinecraftRequests["minecraft:operators/remove"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:operators/remove"]["response"]> {
-        return await this.makeRpcRequest("minecraft:operators/remove", params);
+        return await this.makeRpcRequest(
+            "minecraft:operators/remove",
+            ...params
+        );
     }
 
     async clearOperators(): Promise<
@@ -174,9 +180,9 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async saveServer(
-        params: MinecraftRequests["minecraft:server/save"]["request_params"]
+        ...params: MinecraftRequests["minecraft:server/save"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:server/save"]["response"]> {
-        return await this.makeRpcRequest("minecraft:server/save", params);
+        return await this.makeRpcRequest("minecraft:server/save", ...params);
     }
 
     async stopServer(): Promise<
@@ -186,13 +192,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async sendSystemMessage(
-        params: MinecraftRequests["minecraft:server/system_message"]["request_params"]
+        ...params: MinecraftRequests["minecraft:server/system_message"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:server/system_message"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:server/system_message",
-            params
+            ...params
         );
     }
 
@@ -206,13 +212,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setAutosave(
-        params: MinecraftRequests["minecraft:serversettings/autosave/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/autosave/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/autosave/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/autosave/set",
-            params
+            ...params
         );
     }
 
@@ -223,13 +229,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setDifficulty(
-        params: MinecraftRequests["minecraft:serversettings/difficulty/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/difficulty/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/difficulty/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/difficulty/set",
-            params
+            ...params
         );
     }
 
@@ -242,13 +248,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setEnforceAllowlist(
-        params: MinecraftRequests["minecraft:serversettings/enforce_allowlist/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/enforce_allowlist/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/enforce_allowlist/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/enforce_allowlist/set",
-            params
+            ...params
         );
     }
 
@@ -261,13 +267,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setUseAllowlist(
-        params: MinecraftRequests["minecraft:serversettings/use_allowlist/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/use_allowlist/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/use_allowlist/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/use_allowlist/set",
-            params
+            ...params
         );
     }
 
@@ -280,13 +286,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setMaxPlayers(
-        params: MinecraftRequests["minecraft:serversettings/max_players/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/max_players/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/max_players/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/max_players/set",
-            params
+            ...params
         );
     }
 
@@ -299,13 +305,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setPauseWhenEmptySeconds(
-        params: MinecraftRequests["minecraft:serversettings/pause_when_empty_seconds/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/pause_when_empty_seconds/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/pause_when_empty_seconds/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/pause_when_empty_seconds/set",
-            params
+            ...params
         );
     }
 
@@ -318,13 +324,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setPlayerIdleTimeout(
-        params: MinecraftRequests["minecraft:serversettings/player_idle_timeout/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/player_idle_timeout/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/player_idle_timeout/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/player_idle_timeout/set",
-            params
+            ...params
         );
     }
 
@@ -337,13 +343,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setAllowFlight(
-        params: MinecraftRequests["minecraft:serversettings/allow_flight/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/allow_flight/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/allow_flight/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/allow_flight/set",
-            params
+            ...params
         );
     }
 
@@ -354,13 +360,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setMotd(
-        params: MinecraftRequests["minecraft:serversettings/motd/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/motd/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/motd/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/motd/set",
-            params
+            ...params
         );
     }
 
@@ -373,13 +379,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setSpawnProtectionRadius(
-        params: MinecraftRequests["minecraft:serversettings/spawn_protection_radius/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/spawn_protection_radius/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/spawn_protection_radius/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/spawn_protection_radius/set",
-            params
+            ...params
         );
     }
 
@@ -392,13 +398,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setForceGameMode(
-        params: MinecraftRequests["minecraft:serversettings/force_game_mode/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/force_game_mode/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/force_game_mode/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/force_game_mode/set",
-            params
+            ...params
         );
     }
 
@@ -409,13 +415,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setGameMode(
-        params: MinecraftRequests["minecraft:serversettings/game_mode/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/game_mode/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/game_mode/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/game_mode/set",
-            params
+            ...params
         );
     }
 
@@ -428,13 +434,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setViewDistance(
-        params: MinecraftRequests["minecraft:serversettings/view_distance/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/view_distance/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/view_distance/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/view_distance/set",
-            params
+            ...params
         );
     }
 
@@ -447,13 +453,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setSimulationDistance(
-        params: MinecraftRequests["minecraft:serversettings/simulation_distance/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/simulation_distance/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/simulation_distance/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/simulation_distance/set",
-            params
+            ...params
         );
     }
 
@@ -466,13 +472,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setAcceptTransfers(
-        params: MinecraftRequests["minecraft:serversettings/accept_transfers/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/accept_transfers/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/accept_transfers/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/accept_transfers/set",
-            params
+            ...params
         );
     }
 
@@ -485,13 +491,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setStatusHeartbeatInterval(
-        params: MinecraftRequests["minecraft:serversettings/status_heartbeat_interval/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/status_heartbeat_interval/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/status_heartbeat_interval/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/status_heartbeat_interval/set",
-            params
+            ...params
         );
     }
 
@@ -504,13 +510,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setOperatorUserPermissionLevel(
-        params: MinecraftRequests["minecraft:serversettings/operator_user_permission_level/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/operator_user_permission_level/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/operator_user_permission_level/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/operator_user_permission_level/set",
-            params
+            ...params
         );
     }
 
@@ -523,13 +529,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setHideOnlinePlayers(
-        params: MinecraftRequests["minecraft:serversettings/hide_online_players/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/hide_online_players/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/hide_online_players/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/hide_online_players/set",
-            params
+            ...params
         );
     }
 
@@ -542,13 +548,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setStatusReplies(
-        params: MinecraftRequests["minecraft:serversettings/status_replies/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/status_replies/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/status_replies/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/status_replies/set",
-            params
+            ...params
         );
     }
 
@@ -561,13 +567,13 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setEntityBroadcastRange(
-        params: MinecraftRequests["minecraft:serversettings/entity_broadcast_range/set"]["request_params"]
+        ...params: MinecraftRequests["minecraft:serversettings/entity_broadcast_range/set"]["request_params"]
     ): Promise<
         MinecraftRequests["minecraft:serversettings/entity_broadcast_range/set"]["response"]
     > {
         return await this.makeRpcRequest(
             "minecraft:serversettings/entity_broadcast_range/set",
-            params
+            ...params
         );
     }
 
@@ -581,18 +587,21 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async updateGamerules(
-        params: MinecraftRequests["minecraft:gamerules/update"]["request_params"]
+        ...params: MinecraftRequests["minecraft:gamerules/update"]["request_params"]
     ): Promise<MinecraftRequests["minecraft:gamerules/update"]["response"]> {
-        return await this.makeRpcRequest("minecraft:gamerules/update", params);
+        return await this.makeRpcRequest(
+            "minecraft:gamerules/update",
+            ...params
+        );
     }
 
     // ---------------------------------------------------------------------
     // Console
     // ---------------------------------------------------------------------
-    async runCommand(params: MinecraftRequests["console:send"]["request_params"]): Promise<
-        MinecraftRequests["console:send"]["response"]
-    > {
-        return await this.makeRpcRequest("console:send", params);
+    async runCommand(
+        ...params: MinecraftRequests["console:send"]["request_params"]
+    ): Promise<MinecraftRequests["console:send"]["response"]> {
+        return await this.makeRpcRequest("console:send", ...params);
     }
 
     // =======================================================================
@@ -972,10 +981,7 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
             MinecraftNotifications["console:notification/log/event"]
         >
     ) {
-        this.addEventListener(
-            "console:notification/log/event",
-            callback
-        );
+        this.addEventListener("console:notification/log/event", callback);
     }
 
     removeLogEventListener(
@@ -983,9 +989,6 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
             MinecraftNotifications["console:notification/log/event"]
         >
     ) {
-        this.removeEventListener(
-            "console:notification/log/event",
-            callback
-        );
+        this.removeEventListener("console:notification/log/event", callback);
     }
 }

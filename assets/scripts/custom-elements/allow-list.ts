@@ -55,11 +55,11 @@ class AllowListElement extends LitElement {
     }
 
     async addPlayer() {
-        await client.setAllowList({ players: [{ name: "enoua5" }] });
+        await client.setAllowList([{ name: "enoua5" }]);
     }
 
     async removePlayer() {
-        await client.setAllowList({ players: [] });
+        await client.setAllowList([]);
     }
 
     render() {

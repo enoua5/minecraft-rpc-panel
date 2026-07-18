@@ -151,19 +151,13 @@ export interface ConsoleLogEvent {
 // --- minecraft:allowlist ---
 export type AllowlistResult = Player[];
 
-export interface AllowlistSetParams {
-    players: Player[];
-}
+export type AllowlistSetParams = [Player[]];
 export type AllowlistSetResult = Player[];
 
-export interface AllowlistAddParams {
-    add: Player[];
-}
+export type AllowlistAddParams = [Player[]];
 export type AllowlistAddResult = Player[];
 
-export interface AllowlistRemoveParams {
-    remove: Player[];
-}
+export type AllowlistRemoveParams = [Player[]];
 export type AllowlistRemoveResult = Player[];
 
 export type AllowlistClearResult = Player[];
@@ -171,19 +165,13 @@ export type AllowlistClearResult = Player[];
 // --- minecraft:bans ---
 export type BansResult = UserBan[];
 
-export interface BansSetParams {
-    bans: UserBan[];
-}
+export type BansSetParams = [UserBan[]];
 export type BansSetResult = UserBan[];
 
-export interface BansAddParams {
-    add: UserBan[];
-}
+export type BansAddParams = [UserBan[]];
 export type BansAddResult = UserBan[];
 
-export interface BansRemoveParams {
-    remove: Player[];
-}
+export type BansRemoveParams = [Player[]];
 export type BansRemoveResult = UserBan[];
 
 export type BansClearResult = UserBan[];
@@ -191,19 +179,13 @@ export type BansClearResult = UserBan[];
 // --- minecraft:ip_bans ---
 export type IpBansResult = IpBan[];
 
-export interface IpBansSetParams {
-    banlist: IpBan[];
-}
+export type IpBansSetParams = [IpBan[]];
 export type IpBansSetResult = IpBan[];
 
-export interface IpBansAddParams {
-    add: IncomingIpBan[];
-}
+export type IpBansAddParams = [IncomingIpBan[]];
 export type IpBansAddResult = IpBan[];
 
-export interface IpBansRemoveParams {
-    ip: string[];
-}
+export type IpBansRemoveParams = [string[]];
 export type IpBansRemoveResult = IpBan[];
 
 export type IpBansClearResult = IpBan[];
@@ -211,27 +193,19 @@ export type IpBansClearResult = IpBan[];
 // --- minecraft:players ---
 export type PlayersResult = Player[];
 
-export interface PlayersKickParams {
-    kick: KickPlayer[];
-}
+export type PlayersKickParams = [KickPlayer[]];
 export type PlayersKickResult = Player[];
 
 // --- minecraft:operators ---
 export type OperatorsResult = Operator[];
 
-export interface OperatorsSetParams {
-    operators: Operator[];
-}
+export type OperatorsSetParams = [Operator[]];
 export type OperatorsSetResult = Operator[];
 
-export interface OperatorsAddParams {
-    add: Operator[];
-}
+export type OperatorsAddParams = [Operator[]];
 export type OperatorsAddResult = Operator[];
 
-export interface OperatorsRemoveParams {
-    remove: Player[];
-}
+export type OperatorsRemoveParams = [Player[]];
 export type OperatorsRemoveResult = Operator[];
 
 export type OperatorsClearResult = Operator[];
@@ -239,158 +213,112 @@ export type OperatorsClearResult = Operator[];
 // --- minecraft:server ---
 export type ServerStatusResult = ServerState;
 
-export interface ServerSaveParams {
-    flush: boolean;
-}
+export type ServerSaveParams = [boolean];
 export type ServerSaveResult = boolean;
 
 export type ServerStopResult = boolean;
 
-export interface ServerSystemMessageParams {
-    message: SystemMessage;
-}
+export type ServerSystemMessageParams = [SystemMessage];
 export type ServerSystemMessageResult = boolean;
 
 // --- minecraft:serversettings ---
 export type ServerSettingsAutosaveResult = boolean;
-export interface ServerSettingsAutosaveSetParams {
-    enable: boolean;
-}
+export type ServerSettingsAutosaveSetParams = [boolean];
 export type ServerSettingsAutosaveSetResult = boolean;
 
 export type ServerSettingsDifficultyResult = Difficulty;
-export interface ServerSettingsDifficultySetParams {
-    difficulty: Difficulty;
-}
+export type ServerSettingsDifficultySetParams = [Difficulty];
 export type ServerSettingsDifficultySetResult = Difficulty;
 
 export type ServerSettingsEnforceAllowlistResult = boolean;
-export interface ServerSettingsEnforceAllowlistSetParams {
-    enforce: boolean;
-}
+export type ServerSettingsEnforceAllowlistSetParams = [boolean];
 export type ServerSettingsEnforceAllowlistSetResult = boolean;
 
 export type ServerSettingsUseAllowlistResult = boolean;
-export interface ServerSettingsUseAllowlistSetParams {
-    use: boolean;
-}
+export type ServerSettingsUseAllowlistSetParams = [boolean];
 export type ServerSettingsUseAllowlistSetResult = boolean;
 
 export type ServerSettingsMaxPlayersResult = number;
-export interface ServerSettingsMaxPlayersSetParams {
-    max: number;
-}
+export type ServerSettingsMaxPlayersSetParams = [number];
 export type ServerSettingsMaxPlayersSetResult = number;
 
 export type ServerSettingsPauseWhenEmptySecondsResult = number;
-export interface ServerSettingsPauseWhenEmptySecondsSetParams {
-    seconds: number;
-}
+export type ServerSettingsPauseWhenEmptySecondsSetParams = [number];
 export type ServerSettingsPauseWhenEmptySecondsSetResult = number;
 
 export type ServerSettingsPlayerIdleTimeoutResult = number;
-export interface ServerSettingsPlayerIdleTimeoutSetParams {
-    seconds: number;
-}
+export type ServerSettingsPlayerIdleTimeoutSetParams = [number];
 export type ServerSettingsPlayerIdleTimeoutSetResult = number;
 
 export type ServerSettingsAllowFlightResult = boolean;
-export interface ServerSettingsAllowFlightSetParams {
-    allow: boolean;
-}
+export type ServerSettingsAllowFlightSetParams = [boolean];
 export type ServerSettingsAllowFlightSetResult = boolean;
 
 export type ServerSettingsMotdResult = string;
-export interface ServerSettingsMotdSetParams {
-    message: string;
-}
+export type ServerSettingsMotdSetParams = [string];
 export type ServerSettingsMotdSetResult = string;
 
 export type ServerSettingsSpawnProtectionRadiusResult = number;
-export interface ServerSettingsSpawnProtectionRadiusSetParams {
-    radius: number;
-}
+export type ServerSettingsSpawnProtectionRadiusSetParams = [number];
 export type ServerSettingsSpawnProtectionRadiusSetResult = number;
 
 export type ServerSettingsForceGameModeResult = boolean;
-export interface ServerSettingsForceGameModeSetParams {
-    force: boolean;
-}
+export type ServerSettingsForceGameModeSetParams = [boolean];
 export type ServerSettingsForceGameModeSetResult = boolean;
 
 export type ServerSettingsGameModeResult = GameType;
-export interface ServerSettingsGameModeSetParams {
-    mode: GameType;
-}
+export type ServerSettingsGameModeSetParams = [GameType];
 export type ServerSettingsGameModeSetResult = GameType;
 
 export type ServerSettingsViewDistanceResult = number;
-export interface ServerSettingsViewDistanceSetParams {
-    distance: number;
-}
+export type ServerSettingsViewDistanceSetParams = [number];
 export type ServerSettingsViewDistanceSetResult = number;
 
 export type ServerSettingsSimulationDistanceResult = number;
-export interface ServerSettingsSimulationDistanceSetParams {
-    distance: number;
-}
+export type ServerSettingsSimulationDistanceSetParams = [number];
 export type ServerSettingsSimulationDistanceSetResult = number;
 
 export type ServerSettingsAcceptTransfersResult = boolean;
-export interface ServerSettingsAcceptTransfersSetParams {
-    accept: boolean;
-}
+export type ServerSettingsAcceptTransfersSetParams = [boolean];
 export type ServerSettingsAcceptTransfersSetResult = boolean;
 
 export type ServerSettingsStatusHeartbeatIntervalResult = number;
-export interface ServerSettingsStatusHeartbeatIntervalSetParams {
-    seconds: number;
-}
+export type ServerSettingsStatusHeartbeatIntervalSetParams = [number];
 export type ServerSettingsStatusHeartbeatIntervalSetResult = number;
 
 export type ServerSettingsOperatorUserPermissionLevelResult = number;
-export interface ServerSettingsOperatorUserPermissionLevelSetParams {
-    level: number;
-}
+export type ServerSettingsOperatorUserPermissionLevelSetParams = [number];
 export type ServerSettingsOperatorUserPermissionLevelSetResult = number;
 
 export type ServerSettingsHideOnlinePlayersResult = boolean;
-export interface ServerSettingsHideOnlinePlayersSetParams {
-    hide: boolean;
-}
+export type ServerSettingsHideOnlinePlayersSetParams = [boolean];
 export type ServerSettingsHideOnlinePlayersSetResult = boolean;
 
 export type ServerSettingsStatusRepliesResult = boolean;
-export interface ServerSettingsStatusRepliesSetParams {
-    enable: boolean;
-}
+export type ServerSettingsStatusRepliesSetParams = [boolean];
 export type ServerSettingsStatusRepliesSetResult = boolean;
 
 export type ServerSettingsEntityBroadcastRangeResult = number;
-export interface ServerSettingsEntityBroadcastRangeSetParams {
-    percentage_points: number;
-}
+export type ServerSettingsEntityBroadcastRangeSetParams = [number];
 export type ServerSettingsEntityBroadcastRangeSetResult = number;
 
 // --- minecraft:gamerules ---
 export type GamerulesResult = TypedGameRule[];
 
-export interface GamerulesUpdateParams {
-    gamerule: UntypedGameRule;
-}
+export type GamerulesUpdateParams = [UntypedGameRule];
 export type GamerulesUpdateResult = TypedGameRule;
 
 // --- console:send ---
-export interface ConsoleSendParams {
-    send: {
+export type ConsoleSendParams = [
+    {
         command: string;
-    }
-}
+    },
+];
 export type ConsoleSendResult = {
     command: string;
     result?: string;
     success: boolean;
-}
+};
 
 export interface MinecraftNotifications {
     "minecraft:notification/server/started": [];
@@ -411,7 +339,7 @@ export interface MinecraftNotifications {
     "minecraft:notification/gamerules/updated": [TypedGameRule];
     "minecraft:notification/server/status": [ServerState];
     // https://modrinth.com/mod/msmp-console
-    "console:notification/log/event": [ConsoleLogEvent]
+    "console:notification/log/event": [ConsoleLogEvent];
 }
 
 export type MinecraftNotificationMethodName = keyof MinecraftNotifications;
@@ -422,11 +350,11 @@ export type MinecraftRpcNotification<
 
 export interface MinecraftRequests {
     "rpc.discover": {
-        request_params: undefined;
+        request_params: [];
         response: DiscoverResponse;
     };
     "minecraft:allowlist": {
-        request_params: undefined;
+        request_params: [];
         response: AllowlistResult;
     };
     "minecraft:allowlist/set": {
@@ -442,11 +370,11 @@ export interface MinecraftRequests {
         response: AllowlistRemoveResult;
     };
     "minecraft:allowlist/clear": {
-        request_params: undefined;
+        request_params: [];
         response: AllowlistClearResult;
     };
 
-    "minecraft:bans": { request_params: undefined; response: BansResult };
+    "minecraft:bans": { request_params: []; response: BansResult };
     "minecraft:bans/set": {
         request_params: BansSetParams;
         response: BansSetResult;
@@ -460,12 +388,12 @@ export interface MinecraftRequests {
         response: BansRemoveResult;
     };
     "minecraft:bans/clear": {
-        request_params: undefined;
+        request_params: [];
         response: BansClearResult;
     };
 
     "minecraft:ip_bans": {
-        request_params: undefined;
+        request_params: [];
         response: IpBansResult;
     };
     "minecraft:ip_bans/set": {
@@ -481,12 +409,12 @@ export interface MinecraftRequests {
         response: IpBansRemoveResult;
     };
     "minecraft:ip_bans/clear": {
-        request_params: undefined;
+        request_params: [];
         response: IpBansClearResult;
     };
 
     "minecraft:players": {
-        request_params: undefined;
+        request_params: [];
         response: PlayersResult;
     };
     "minecraft:players/kick": {
@@ -495,7 +423,7 @@ export interface MinecraftRequests {
     };
 
     "minecraft:operators": {
-        request_params: undefined;
+        request_params: [];
         response: OperatorsResult;
     };
     "minecraft:operators/set": {
@@ -511,12 +439,12 @@ export interface MinecraftRequests {
         response: OperatorsRemoveResult;
     };
     "minecraft:operators/clear": {
-        request_params: undefined;
+        request_params: [];
         response: OperatorsClearResult;
     };
 
     "minecraft:server/status": {
-        request_params: undefined;
+        request_params: [];
         response: ServerStatusResult;
     };
     "minecraft:server/save": {
@@ -524,7 +452,7 @@ export interface MinecraftRequests {
         response: ServerSaveResult;
     };
     "minecraft:server/stop": {
-        request_params: undefined;
+        request_params: [];
         response: ServerStopResult;
     };
     "minecraft:server/system_message": {
@@ -533,7 +461,7 @@ export interface MinecraftRequests {
     };
 
     "minecraft:serversettings/autosave": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsAutosaveResult;
     };
     "minecraft:serversettings/autosave/set": {
@@ -541,7 +469,7 @@ export interface MinecraftRequests {
         response: ServerSettingsAutosaveSetResult;
     };
     "minecraft:serversettings/difficulty": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsDifficultyResult;
     };
     "minecraft:serversettings/difficulty/set": {
@@ -549,7 +477,7 @@ export interface MinecraftRequests {
         response: ServerSettingsDifficultySetResult;
     };
     "minecraft:serversettings/enforce_allowlist": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsEnforceAllowlistResult;
     };
     "minecraft:serversettings/enforce_allowlist/set": {
@@ -557,7 +485,7 @@ export interface MinecraftRequests {
         response: ServerSettingsEnforceAllowlistSetResult;
     };
     "minecraft:serversettings/use_allowlist": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsUseAllowlistResult;
     };
     "minecraft:serversettings/use_allowlist/set": {
@@ -565,7 +493,7 @@ export interface MinecraftRequests {
         response: ServerSettingsUseAllowlistSetResult;
     };
     "minecraft:serversettings/max_players": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsMaxPlayersResult;
     };
     "minecraft:serversettings/max_players/set": {
@@ -573,7 +501,7 @@ export interface MinecraftRequests {
         response: ServerSettingsMaxPlayersSetResult;
     };
     "minecraft:serversettings/pause_when_empty_seconds": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsPauseWhenEmptySecondsResult;
     };
     "minecraft:serversettings/pause_when_empty_seconds/set": {
@@ -581,7 +509,7 @@ export interface MinecraftRequests {
         response: ServerSettingsPauseWhenEmptySecondsSetResult;
     };
     "minecraft:serversettings/player_idle_timeout": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsPlayerIdleTimeoutResult;
     };
     "minecraft:serversettings/player_idle_timeout/set": {
@@ -589,7 +517,7 @@ export interface MinecraftRequests {
         response: ServerSettingsPlayerIdleTimeoutSetResult;
     };
     "minecraft:serversettings/allow_flight": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsAllowFlightResult;
     };
     "minecraft:serversettings/allow_flight/set": {
@@ -597,7 +525,7 @@ export interface MinecraftRequests {
         response: ServerSettingsAllowFlightSetResult;
     };
     "minecraft:serversettings/motd": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsMotdResult;
     };
     "minecraft:serversettings/motd/set": {
@@ -605,7 +533,7 @@ export interface MinecraftRequests {
         response: ServerSettingsMotdSetResult;
     };
     "minecraft:serversettings/spawn_protection_radius": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsSpawnProtectionRadiusResult;
     };
     "minecraft:serversettings/spawn_protection_radius/set": {
@@ -613,7 +541,7 @@ export interface MinecraftRequests {
         response: ServerSettingsSpawnProtectionRadiusSetResult;
     };
     "minecraft:serversettings/force_game_mode": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsForceGameModeResult;
     };
     "minecraft:serversettings/force_game_mode/set": {
@@ -621,7 +549,7 @@ export interface MinecraftRequests {
         response: ServerSettingsForceGameModeSetResult;
     };
     "minecraft:serversettings/game_mode": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsGameModeResult;
     };
     "minecraft:serversettings/game_mode/set": {
@@ -629,7 +557,7 @@ export interface MinecraftRequests {
         response: ServerSettingsGameModeSetResult;
     };
     "minecraft:serversettings/view_distance": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsViewDistanceResult;
     };
     "minecraft:serversettings/view_distance/set": {
@@ -637,7 +565,7 @@ export interface MinecraftRequests {
         response: ServerSettingsViewDistanceSetResult;
     };
     "minecraft:serversettings/simulation_distance": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsSimulationDistanceResult;
     };
     "minecraft:serversettings/simulation_distance/set": {
@@ -645,7 +573,7 @@ export interface MinecraftRequests {
         response: ServerSettingsSimulationDistanceSetResult;
     };
     "minecraft:serversettings/accept_transfers": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsAcceptTransfersResult;
     };
     "minecraft:serversettings/accept_transfers/set": {
@@ -653,7 +581,7 @@ export interface MinecraftRequests {
         response: ServerSettingsAcceptTransfersSetResult;
     };
     "minecraft:serversettings/status_heartbeat_interval": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsStatusHeartbeatIntervalResult;
     };
     "minecraft:serversettings/status_heartbeat_interval/set": {
@@ -661,7 +589,7 @@ export interface MinecraftRequests {
         response: ServerSettingsStatusHeartbeatIntervalSetResult;
     };
     "minecraft:serversettings/operator_user_permission_level": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsOperatorUserPermissionLevelResult;
     };
     "minecraft:serversettings/operator_user_permission_level/set": {
@@ -669,7 +597,7 @@ export interface MinecraftRequests {
         response: ServerSettingsOperatorUserPermissionLevelSetResult;
     };
     "minecraft:serversettings/hide_online_players": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsHideOnlinePlayersResult;
     };
     "minecraft:serversettings/hide_online_players/set": {
@@ -677,7 +605,7 @@ export interface MinecraftRequests {
         response: ServerSettingsHideOnlinePlayersSetResult;
     };
     "minecraft:serversettings/status_replies": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsStatusRepliesResult;
     };
     "minecraft:serversettings/status_replies/set": {
@@ -685,7 +613,7 @@ export interface MinecraftRequests {
         response: ServerSettingsStatusRepliesSetResult;
     };
     "minecraft:serversettings/entity_broadcast_range": {
-        request_params: undefined;
+        request_params: [];
         response: ServerSettingsEntityBroadcastRangeResult;
     };
     "minecraft:serversettings/entity_broadcast_range/set": {
@@ -694,7 +622,7 @@ export interface MinecraftRequests {
     };
 
     "minecraft:gamerules": {
-        request_params: undefined;
+        request_params: [];
         response: GamerulesResult;
     };
     "minecraft:gamerules/update": {
@@ -705,7 +633,7 @@ export interface MinecraftRequests {
     "console:send": {
         request_params: ConsoleSendParams;
         response: ConsoleSendResult;
-    }
+    };
 }
 
 export type MinecraftMethodName = keyof MinecraftRequests;

@@ -1,0 +1,20 @@
+{
+  "name": "rpc-admin",
+  "version": "1.0.0",
+  "description": "Minecraft Server Management Admin Panel Javascript",
+  "license": "Apache-2.0",
+  "author": "enoua5",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --watch --mode development"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "ts-loader": "^9.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^6",
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1"
+  }
+}

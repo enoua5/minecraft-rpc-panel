@@ -1,5 +1,5 @@
-import { html } from "./html-template.js";
-import { client } from "../mcmp-client.js";
+import { html } from "./html-template";
+import { client } from "../mcsmp/mcmp-client";
 
 class TestElement extends HTMLElement {
     constructor() {

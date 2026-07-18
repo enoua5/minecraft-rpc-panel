@@ -30,14 +30,3 @@ install: .venv/touchfile
 format: .ACTION .venv/bin/black
 	.venv/bin/black .
 	npx prettier --write **/*.ts **/*.mts
-
-# javascript
-js: panel-js
-panel-js:\
-	panel/static/panel/js/custom-elements/index.js\
-	panel/static/panel/js/*.js\
-	panel/static/panel/js/custom-elements/*.js
-%.js: %.ts
-	tsc $<
-
-.ACTION:

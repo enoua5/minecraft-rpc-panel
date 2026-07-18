@@ -1,4 +1,4 @@
-import { MinecraftServerManagementClient } from "./mcmp-handler.js";
+import { MinecraftServerManagementClient } from "./mcmp-handler";
 
 async function getConnectedClient(): Promise<MinecraftServerManagementClient> {
     const serverId = JSON.parse(

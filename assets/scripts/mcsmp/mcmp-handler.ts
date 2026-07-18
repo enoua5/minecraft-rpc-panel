@@ -4,7 +4,7 @@ import type {
     MinecraftNotifications,
     MinecraftRequests,
 } from "./mcmp.d.mts";
-import { RpcCallback, RpcRequestHandler } from "./rpc-request-handler.js";
+import { RpcCallback, RpcRequestHandler } from "./rpc-request-handler";
 
 export class MinecraftServerManagementClient extends RpcRequestHandler<
     MinecraftMethodName,

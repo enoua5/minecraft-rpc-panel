@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "rootDir": "./assets/scripts",
+        "noImplicitAny": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "target": "esnext",
+        "allowJs": true,
+        "types": [ "node" ]
+    },
+    "include": ["assets/scripts/**/*"],
+    "exclude": ["node_modules"],
+}

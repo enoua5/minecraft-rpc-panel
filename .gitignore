@@ -1,5 +1,8 @@
 .venv
+node_modules
+
+panel/static/panel/index.js
+
 **/__pycache__
-**/*.js
 
 db.sqlite3

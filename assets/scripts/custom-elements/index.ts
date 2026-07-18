@@ -1,3 +1,2 @@
-import "./allow-list";
 import "./log-list";
-import "./test";
+import "./server-status";

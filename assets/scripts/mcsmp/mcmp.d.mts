@@ -72,7 +72,7 @@ export interface Version {
 }
 
 export interface ServerState {
-    players: Player[];
+    players?: Player[];
     started: boolean;
     version: Version;
 }

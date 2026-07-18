@@ -15,9 +15,16 @@
     <div>
         <mcsmp-server-status />
     </div>
-    <div>b</div>
     <div>
-        <mcsmp-logs />
+        <tab-menu
+            tabs="Logs,womp"
+            shown="Logs"
+        />
+    </div>
+    <div>
+        <tab-pane name="Logs">
+            <mcsmp-logs />
+        </tab-pane>
     </div>
 </div>
 {% endblock %}

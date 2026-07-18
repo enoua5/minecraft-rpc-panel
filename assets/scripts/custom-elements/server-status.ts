@@ -38,7 +38,6 @@ class ServerStatusElement extends LitElement {
     connectedCallback() {
         super.connectedCallback();
         client.getServerStatus().then((result) => {
-            console.log(result);
             this.server_state = result;
         });
         client.setStatusHeartbeatInterval(5);

@@ -1,6 +1,6 @@
 
-dev: .ACTION .venv/bin/python .venv/touchfile js
-	.venv/bin/python manage.py runserver
+dev: .ACTION .venv/bin/python .venv/touchfile
+	parallel -u ::: "npm run dev" ".venv/bin/python manage.py runserver"
 
 # Venv init
 .venv/bin/python:
@@ -30,3 +30,5 @@ install: .venv/touchfile
 format: .ACTION .venv/bin/black
 	.venv/bin/black .
 	npx prettier --write **/*.ts **/*.mts
+
+.ACTION:

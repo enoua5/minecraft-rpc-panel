@@ -586,6 +586,15 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
         return await this.makeRpcRequest("minecraft:gamerules/update", params);
     }
 
+    // ---------------------------------------------------------------------
+    // Console
+    // ---------------------------------------------------------------------
+    async runCommand(params: MinecraftRequests["console:send"]["request_params"]): Promise<
+        MinecraftRequests["console:send"]["response"]
+    > {
+        return await this.makeRpcRequest("console:send", params);
+    }
+
     // =======================================================================
     // Notifications
     // =======================================================================
@@ -953,6 +962,29 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     ) {
         this.removeEventListener(
             "minecraft:notification/gamerules/updated",
+            callback
+        );
+    }
+
+    // --- console:log/event ---
+    addLogEventListener(
+        callback: RpcCallback<
+            MinecraftNotifications["console:notification/log/event"]
+        >
+    ) {
+        this.addEventListener(
+            "console:notification/log/event",
+            callback
+        );
+    }
+
+    removeLogEventListener(
+        callback: RpcCallback<
+            MinecraftNotifications["console:notification/log/event"]
+        >
+    ) {
+        this.removeEventListener(
+            "console:notification/log/event",
             callback
         );
     }

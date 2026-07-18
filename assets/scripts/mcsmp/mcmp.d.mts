@@ -139,6 +139,15 @@ export interface TypedGameRule {
     key: string;
 }
 
+export interface ConsoleLogEvent {
+    timestamp: string;
+    level: string;
+    logger: string;
+    message: string;
+    thread: string;
+    throwable: string;
+}
+
 // --- minecraft:allowlist ---
 export type AllowlistResult = Player[];
 
@@ -371,6 +380,18 @@ export interface GamerulesUpdateParams {
 }
 export type GamerulesUpdateResult = TypedGameRule;
 
+// --- console:send ---
+export interface ConsoleSendParams {
+    send: {
+        command: string;
+    }
+}
+export type ConsoleSendResult = {
+    command: string;
+    result?: string;
+    success: boolean;
+}
+
 export interface MinecraftNotifications {
     "minecraft:notification/server/started": [];
     "minecraft:notification/server/stopping": [];
@@ -389,6 +410,8 @@ export interface MinecraftNotifications {
     "minecraft:notification/bans/removed": [Player];
     "minecraft:notification/gamerules/updated": [TypedGameRule];
     "minecraft:notification/server/status": [ServerState];
+    // https://modrinth.com/mod/msmp-console
+    "console:notification/log/event": [ConsoleLogEvent]
 }
 
 export type MinecraftNotificationMethodName = keyof MinecraftNotifications;
@@ -678,6 +701,11 @@ export interface MinecraftRequests {
         request_params: GamerulesUpdateParams;
         response: GamerulesUpdateResult;
     };
+    // https://modrinth.com/mod/msmp-console
+    "console:send": {
+        request_params: ConsoleSendParams;
+        response: ConsoleSendResult;
+    }
 }
 
 export type MinecraftMethodName = keyof MinecraftRequests;

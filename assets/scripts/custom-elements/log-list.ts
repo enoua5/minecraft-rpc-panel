@@ -1,11 +1,12 @@
-import { css, html, LitElement } from "lit";
+import { css, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { ref, createRef, Ref } from "lit/directives/ref.js";
 import { ConsoleLogEvent } from "../mcsmp/mcmp.mjs";
 import { client } from "../mcsmp/mcmp-client";
+import { LitElementWithAdpotedStyles } from "./lit-element-with-adpoted-styles";
 
 @customElement("mcsmp-logs")
-class ServerLogsElement extends LitElement {
+class ServerLogsElement extends LitElementWithAdpotedStyles {
     static styles = css`
         .console-wrapper {
             display: flex;
@@ -30,7 +31,7 @@ class ServerLogsElement extends LitElement {
             flex: 1;
         }
         .console-event-info {
-            color: var(--color-unimportant, grey)
+            color: var(--color-unimportant, grey);
         }
         .console-event-info::before {
             content: "[";
@@ -49,13 +50,13 @@ class ServerLogsElement extends LitElement {
             color: var(--color-text, inherit);
         }
         .console-event-level-warn {
-            color: var(--color-warn, yellow);
+            color: var(--color-warning, yellow);
         }
         .console-event-level-error {
-            color: var(--color-error, red);
+            color: var(--color-danger, red);
         }
         .console-event-level-fatal {
-            color: var(--color-error, red);
+            color: var(--color-danger, red);
         }
     `;
 

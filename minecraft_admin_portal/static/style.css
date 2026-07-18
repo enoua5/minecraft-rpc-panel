@@ -1,4 +1,84 @@
 
+
+:root {
+    --color-background: white;
+
+    --color-text: #1a1a1a;
+    --color-unimportant: #666666;
+
+    --color-outline: #666666;
+
+    --color-primary: #00ff66;
+    --color-secondary: #6366f1;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+
+    --input-bg: #f5f5f5;
+
+    --button-bg: var(--color-secondary);
+    --button-text: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: #0a0a0a;
+        --color-text: white;
+
+        --color-outline: #666666;
+
+        --color-primary: #00ff66;
+        --color-secondary: #6366f1;
+        --color-warning: #f59e0b;
+        --color-danger: #ef4444;
+
+        --input-bg: #1f1f1f;
+    }
+}
+
+a {
+    color: var(--color-primary);
+}
+
+input:not([type="submit"]) {
+    background-color: var(--input-bg);
+    border: 1px solid var(--color-outline);
+    border-radius: 0.5em;
+    color: var(--color-text);
+    padding: 0.4em;
+}
+
+button, input[type="submit"] {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-weight: bold;
+    border: none;
+    padding: 0.4em;
+    border-radius: 0.5em;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: color-mix(in oklab, var(--button-bg), #000010 10%);
+}
+
+button:active, input[type="submit"]:active {
+    background-color: color-mix(in oklab, var(--button-bg), #000040 30%);
+}
+
+button:disabled, input[type="submit"]:disabled {
+    background-color: color-mix(in oklab, var(--button-bg), grey 80%);
+    color: color-mix(in oklab, var(--button-text), grey 40%);
+}
+
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
 h1 {
     margin: 0;
     font-size: 1.5em;
@@ -25,5 +105,7 @@ nav {
 }
 
 .error {
-    color: red;
+    color: var(--color-danger, red);
 }
+
+

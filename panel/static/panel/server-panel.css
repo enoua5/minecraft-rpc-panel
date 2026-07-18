@@ -7,7 +7,7 @@
 }
 
 .dashboard div {
-    border: 1px solid black;
+    border: 1px solid var(--color-outline);
     padding: 1em;
 }
 

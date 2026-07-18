@@ -1,8 +1,8 @@
-{% load static %}
+{% load cache_fix %}
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% no_cache_static 'style.css' %}">
         {% block head %}{% endblock %}
         <title>Minecraft admin panel</title>
     </head>

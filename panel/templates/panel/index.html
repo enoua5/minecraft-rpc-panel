@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% load static %}
+{% load cache_fix %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'panel/index.css' %}">
+<link rel="stylesheet" href="{% no_cache_static 'panel/index.css' %}">
 {% endblock %}
 
 {% block content %}

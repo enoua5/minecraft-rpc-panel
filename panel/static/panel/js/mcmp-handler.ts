@@ -21,7 +21,7 @@ export class MinecraftServerManagementClient extends RpcRequestHandler<
     }
 
     async setAllowList(
-        params: MinecraftRequests["minecraft:allowlist"]["request_params"]
+        params: MinecraftRequests["minecraft:allowlist/set"]["request_params"]
     ) {
         return await this.makeRpcRequest("minecraft:allowlist/set", params);
     }

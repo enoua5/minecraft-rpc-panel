@@ -1,20 +1,40 @@
-import { html } from "./html-template";
+import { LitElement, css, html } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
 import { client } from "../mcsmp/mcmp-client";
+import { DiscoverResponse } from '../mcsmp/mcmp.mjs';
 
-class TestElement extends HTMLElement {
-    constructor() {
-        super();
+/**
+ * Test element that shows the discover
+ */
+@customElement("mcsmp-test")
+class TestElement extends LitElement {
+    static styles = css`
+    :host {
+        height: 200px;
+        overflow-y: auto;
     }
+    `;
+
+    @state()
+    private discover: DiscoverResponse | null = null;
+
+    render() {
+        if(!this.discover) {
+            return html`<p>loading...</p>`;
+        }
+        return html`<pre>${JSON.stringify(this.discover, null, 4)}</pre>`;
+    }
+
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: "open" });
-        shadow.innerHTML = html` <p>loading...</p> `;
+        super.connectedCallback();
         client.discover().then(
-            (response) =>
-                (shadow.innerHTML = html`<pre>
-${JSON.stringify(response, null, 4)}
-</pre>`)
+            (response) => this.discover = response
         );
     }
 }
 
-customElements.define("mcsmp-test", TestElement);
+declare global {
+    interface HTMLElementTagNameMap {
+        "mcsmp-test": TestElement;
+    }
+}

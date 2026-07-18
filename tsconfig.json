@@ -3,6 +3,8 @@
         "outDir": "./dist/",
         "rootDir": "./assets/scripts",
         "noImplicitAny": true,
+        "experimentalDecorators": true,
+        "useDefineForClassFields": false,
         "module": "esnext",
         "moduleResolution": "bundler",
         "target": "esnext",

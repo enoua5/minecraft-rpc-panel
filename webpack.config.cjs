@@ -17,5 +17,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "panel", "static", "panel"),
         filename: "index.js"
-    }
+    },
+    devtool: "inline-source-map"
 }

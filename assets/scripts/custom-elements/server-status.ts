@@ -13,7 +13,7 @@ class ServerStatusElement extends LitElementWithAdpotedStyles {
             width: 100%;
             height: 100%;
             align-items: center;
-            justify-content: space-between
+            justify-content: space-between;
         }
 
         .status {
@@ -47,7 +47,7 @@ class ServerStatusElement extends LitElementWithAdpotedStyles {
         .started-indicator-stopped {
             background-color: red;
         }
-        
+
         .stop {
             --button-bg: var(--color-danger);
         }
@@ -95,7 +95,11 @@ class ServerStatusElement extends LitElementWithAdpotedStyles {
     }
 
     stopServer() {
-        if(confirm("Are you sure you want to stop the server? You will have to ssh back in to restart it.")) {
+        if (
+            confirm(
+                "Are you sure you want to stop the server? You will have to ssh back in to restart it."
+            )
+        ) {
             client.stopServer();
         }
     }
@@ -103,12 +107,12 @@ class ServerStatusElement extends LitElementWithAdpotedStyles {
     render() {
         return html`<div class="wrapper">
             <div class="status">
-            ${this.renderServerState(
-                this.server_state ?? {
-                    started: false,
-                    version: { name: "---", protocol: 0 },
-                }
-            )}
+                ${this.renderServerState(
+                    this.server_state ?? {
+                        started: false,
+                        version: { name: "---", protocol: 0 },
+                    }
+                )}
             </div>
             <div class="controls">
                 <button class="save" @click=${this.saveServer}>Save</button>

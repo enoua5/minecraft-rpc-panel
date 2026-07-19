@@ -133,11 +133,17 @@ export interface UntypedGameRule {
     key: string;
 }
 
-export interface TypedGameRule {
-    type: "integer" | "boolean";
-    value: GameRuleValue;
-    key: string;
-}
+export type TypedGameRule = UntypedGameRule &
+    (
+        | {
+              type: "integer";
+              value: number;
+          }
+        | {
+              type: "boolean";
+              value: boolean;
+          }
+    );
 
 export interface ConsoleLogEvent {
     timestamp: string;

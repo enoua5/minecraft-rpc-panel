@@ -60,6 +60,14 @@ class ServerStatusElement extends LitElementWithAdpotedStyles {
         this.server_state = state;
     };
 
+    handleStop = () => {
+        this.server_state = this.server_state && {
+            ...this.server_state,
+            started: false,
+            players: [],
+        };
+    };
+
     connectedCallback() {
         super.connectedCallback();
         client.getServerStatus().then((result) => {
@@ -67,12 +75,14 @@ class ServerStatusElement extends LitElementWithAdpotedStyles {
         });
         client.setStatusHeartbeatInterval(5);
         client.addServerStatusListener(this.handleHeartbeat);
+        client.addServerStoppingListener(this.handleStop);
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
         client.setStatusHeartbeatInterval(0);
         client.removeServerStatusListener(this.handleHeartbeat);
+        client.removeServerStoppingListener(this.handleStop);
     }
 
     renderServerState(server_state: ServerState) {

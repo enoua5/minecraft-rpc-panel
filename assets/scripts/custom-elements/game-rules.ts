@@ -51,6 +51,24 @@ class GameRulesManagerElement extends LitElementWithAdpotedStyles {
     @state()
     private loading_save: boolean = false;
 
+    forceDisplayUpdate = () => {
+        this.shadowRoot?.querySelectorAll("input").forEach((input) => {
+            const gamerule_type = this.game_rules[input.name].type;
+            const gamerule_value =
+                this.updates[input.name] ?? this.game_rules[input.name].value;
+            if (gamerule_type === "boolean") {
+                input.checked = gamerule_value as boolean;
+            } else {
+                input.value = String(gamerule_value);
+            }
+        });
+    };
+
+    handleGameruleChange = (gamerule: TypedGameRule) => {
+        this.game_rules = { ...this.game_rules, [gamerule.key]: gamerule };
+        this.forceDisplayUpdate();
+    };
+
     connectedCallback() {
         super.connectedCallback();
         client.getGamerules().then((rules) => {
@@ -59,6 +77,12 @@ class GameRulesManagerElement extends LitElementWithAdpotedStyles {
                 this.game_rules[rule.key] = rule;
             }
         });
+        client.addGameRuleUpdatedListener(this.handleGameruleChange);
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        client.removeGameRuleUpdatedListener(this.handleGameruleChange);
     }
 
     stageUpdate = (key: string, value: GameRuleValue | undefined) => {
@@ -78,15 +102,7 @@ class GameRulesManagerElement extends LitElementWithAdpotedStyles {
 
     cancelUpdates = () => {
         this.updates = {};
-
-        this.shadowRoot?.querySelectorAll("input").forEach((input) => {
-            const gamerule = this.game_rules[input.name];
-            if (gamerule.type === "boolean") {
-                input.checked = gamerule.value;
-            } else {
-                input.value = String(gamerule.value);
-            }
-        });
+        this.forceDisplayUpdate();
     };
 
     saveUpdates = () => {
@@ -106,11 +122,14 @@ class GameRulesManagerElement extends LitElementWithAdpotedStyles {
                             this.game_rules[updated_rule.key] = updated_rule;
                         })
                 )
-        ).finally(() => {
-            this.loading_save = false;
-            // to reset the form
-            this.cancelUpdates();
-        });
+        )
+            .then(() => {
+                // to reset the form
+                this.cancelUpdates();
+            })
+            .finally(() => {
+                this.loading_save = false;
+            });
     };
 
     renderGameRule = (rule: TypedGameRule) => {

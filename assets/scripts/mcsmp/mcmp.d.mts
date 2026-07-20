@@ -77,7 +77,7 @@ export interface ServerState {
     version: Version;
 }
 
-export type GameType = "survival" | "creative" | "adventure" | "spectator";
+export type GameMode = "survival" | "creative" | "adventure" | "spectator";
 
 export type Difficulty = "peaceful" | "easy" | "normal" | "hard";
 
@@ -272,9 +272,9 @@ export type ServerSettingsForceGameModeResult = boolean;
 export type ServerSettingsForceGameModeSetParams = [boolean];
 export type ServerSettingsForceGameModeSetResult = boolean;
 
-export type ServerSettingsGameModeResult = GameType;
-export type ServerSettingsGameModeSetParams = [GameType];
-export type ServerSettingsGameModeSetResult = GameType;
+export type ServerSettingsGameModeResult = GameMode;
+export type ServerSettingsGameModeSetParams = [GameMode];
+export type ServerSettingsGameModeSetResult = GameMode;
 
 export type ServerSettingsViewDistanceResult = number;
 export type ServerSettingsViewDistanceSetParams = [number];

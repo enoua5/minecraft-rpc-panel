@@ -30,7 +30,7 @@ class AvailableServer(models.Model):
     """The time the server config was last modified"""
     path = models.FilePathField(
         "Server file path",
-        path="/home/iota/minecraft",
+        path="/home/server/minecraft",
         match="server.properties",
         recursive=True,
         null=True,

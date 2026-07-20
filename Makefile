@@ -1,6 +1,6 @@
 
 start: .ACTION .venv/bin/python .venv/touchfile
-	python manage.py migrate
+	.venv/bin/python manage.py migrate
 	npm install
 	npx webpack --mode production
 	.venv/bin/python manage.py collectstatic --noinput

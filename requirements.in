@@ -1,4 +1,5 @@
 channels[daphne]
 django
 types-channels
+uvicorn
 websockets

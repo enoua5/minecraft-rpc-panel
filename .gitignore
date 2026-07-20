@@ -2,7 +2,10 @@
 node_modules
 
 panel/static/panel/index.js
+static
 
 **/__pycache__
 
 db.sqlite3
+
+secrets

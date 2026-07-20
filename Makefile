@@ -1,6 +1,13 @@
 
+start: .ACTION .venv/bin/python .venv/touchfile
+	python manage.py migrate
+	npm install
+	npx webpack --mode production
+	.venv/bin/python manage.py collectstatic --noinput
+	.venv/bin/python -m uvicorn --port 8500 minecraft_admin_portal.asgi:application
+
 dev: .ACTION .venv/bin/python .venv/touchfile
-	parallel -u ::: "npm run dev" ".venv/bin/python manage.py runserver"
+	DEBUG=TRUE parallel -u ::: "npm run dev" ".venv/bin/python manage.py runserver"
 
 # Venv init
 .venv/bin/python:
